@@ -1,4 +1,4 @@
-FROM php:5.6-alpine
+FROM php:7.1-alpine
 
 RUN apk --no-cache add \
     autoconf \
@@ -16,8 +16,9 @@ RUN apk --no-cache add \
     mercurial \
     tini \
     bash \
-    zlib-dev \
+    imap-dev \
     pcre-dev \
+    zlib-dev \
     postgresql-dev \
     make \
     g++ \
@@ -27,6 +28,7 @@ RUN echo "memory_limit=-1" > "$PHP_INI_DIR/conf.d/memory-limit.ini" \
  && echo "date.timezone=${PHP_TIMEZONE:-UTC}" > "$PHP_INI_DIR/conf.d/date_timezone.ini"
 
 RUN docker-php-ext-install zip \
+ && docker-php-ext-install imap \
  && docker-php-ext-install bcmath \
  && docker-php-ext-install mcrypt \
  && docker-php-ext-install pdo_mysql \

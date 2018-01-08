@@ -7,8 +7,6 @@ RUN apk --no-cache add \
     pkgconfig \
     curl \
     curl-dev \
-    openssl \
-    openssl-dev \
     libxml2 \
     libxml2-dev \
     libmcrypt \
@@ -36,7 +34,6 @@ RUN echo "memory_limit=-1" > "$PHP_INI_DIR/conf.d/memory-limit.ini" \
 RUN docker-php-ext-install zip \
  && docker-php-ext-install imap \
  && docker-php-ext-install bcmath \
- && docker-php-ext-install mcrypt \
  && docker-php-ext-install pdo_mysql \
  && docker-php-ext-install pdo_pgsql \
  && docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-png-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \

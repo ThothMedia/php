@@ -33,11 +33,11 @@ RUN docker-php-ext-install zip \
  && docker-php-ext-install bcmath \
  && docker-php-ext-install mcrypt \
  && docker-php-ext-install pdo_mysql \
- && docker-php-ext-install pdo_pgsql \
- && pecl install redis geoip=1.1.1 mongodb \
- && docker-php-ext-enable redis \
- && docker-php-ext-enable geoip \
- && docker-php-ext-enable mongodb
+ && docker-php-ext-install pdo_pgsql
+
+RUN pecl install redis && docker-php-ext-enable redis
+RUN pecl install geoip-1.1.1 && docker-php-ext-enable geoip
+RUN pecl install mongodb && docker-php-ext-enable mongodb
 
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin/ --filename=composer && chmod +x /usr/local/bin/composer
 

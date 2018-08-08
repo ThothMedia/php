@@ -2,6 +2,7 @@ FROM php:7.0-alpine
 
 RUN apk add --no-cache --virtual build-deps build-base libtool autoconf automake \
   && apk --no-cache add \
+  git \
   curl-dev \
   imap-dev \
   pcre-dev \

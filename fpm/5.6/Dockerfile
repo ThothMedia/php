@@ -27,9 +27,9 @@ RUN apk add --no-cache --virtual build-deps build-base libtool autoconf automake
   && apk del build-deps
 
 RUN echo "memory_limit=-1" > "$PHP_INI_DIR/conf.d/memory-limit.ini" \
-  && echo "date.timezone=${PHP_TIMEZONE:-UTC}" > "$PHP_INI_DIR/conf.d/date_timezone.ini"
-
-RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin/ --filename=composer && chmod +x /usr/local/bin/composer
+  && echo "date.timezone=${PHP_TIMEZONE:-UTC}" > "$PHP_INI_DIR/conf.d/date_timezone.ini" \
+  && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin/ --filename=composer && chmod +x /usr/local/bin/composer \
+  && composer global require hirak/prestissimo
 
 WORKDIR /var/www/html
 
